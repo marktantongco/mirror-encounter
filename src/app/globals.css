@@ -1,0 +1,433 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* Brutalist Color Palette */
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.15 0 0);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0 0);
+
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0 0);
+
+  /* Vibrant Electric Blue Accent */
+  --primary: oklch(0.45 0.22 250);
+  --primary-foreground: oklch(0.98 0 0);
+
+  /* Stark Black Secondary */
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(0.98 0 0);
+
+  --muted: oklch(0.94 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+
+  --accent: oklch(0.98 0 0);
+  --accent-foreground: oklch(0.15 0 0);
+
+  /* Electric Orange for emphasis */
+  --destructive: oklch(0.60 0.20 40);
+
+  /* Brutalist Thick Borders */
+  --border: oklch(0.15 0 0);
+  --input: oklch(0.15 0 0);
+  --ring: oklch(0.45 0.22 250);
+
+  /* Minimal radius for brutalist aesthetic */
+  --radius: 0rem;
+
+  /* Typography - Bold, Chunky, Impactful */
+  --font-display-bold: 800;
+  --font-heading-bold: 700;
+  --font-body-regular: 400;
+  --font-body-bold: 600;
+}
+
+.dark {
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.96 0 0);
+
+  --card: oklch(0.18 0 0);
+  --card-foreground: oklch(0.96 0 0);
+
+  --popover: oklch(0.18 0 0);
+  --popover-foreground: oklch(0.96 0 0);
+
+  --primary: oklch(0.65 0.25 250);
+  --primary-foreground: oklch(0.12 0 0);
+
+  --secondary: oklch(0.96 0 0);
+  --secondary-foreground: oklch(0.12 0 0);
+
+  --muted: oklch(0.25 0 0);
+  --muted-foreground: oklch(0.70 0 0);
+
+  --accent: oklch(0.25 0 0);
+  --accent-foreground: oklch(0.96 0 0);
+
+  --destructive: oklch(0.70 0.22 40);
+
+  --border: oklch(0.96 0 0);
+  --input: oklch(0.96 0 0);
+  --ring: oklch(0.65 0.25 250);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "ss02", "cv01";
+  }
+
+  /* Brutalist Typography Scale */
+  .brutal-display-xl {
+    font-size: clamp(3.5rem, 6vw + 1rem, 6rem);
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    font-weight: var(--font-display-bold);
+  }
+
+  .brutal-display-lg {
+    font-size: clamp(2.5rem, 4vw + 1rem, 4.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    font-weight: var(--font-display-bold);
+  }
+
+  .brutal-display-md {
+    font-size: clamp(2rem, 3vw + 0.5rem, 3rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    font-weight: var(--font-heading-bold);
+  }
+
+  .brutal-heading-xl {
+    font-size: clamp(1.75rem, 2.5vw + 0.5rem, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    font-weight: var(--font-heading-bold);
+  }
+
+  .brutal-heading-lg {
+    font-size: clamp(1.5rem, 2vw + 0.25rem, 2rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    font-weight: var(--font-heading-bold);
+  }
+
+  .brutal-body-lg {
+    font-size: clamp(1.125rem, 1.25vw + 0.125rem, 1.5rem);
+    line-height: 1.5;
+    letter-spacing: -0.005em;
+    font-weight: var(--font-body-regular);
+  }
+
+  .brutal-body-base {
+    font-size: clamp(1rem, 1vw + 0.125rem, 1.125rem);
+    line-height: 1.6;
+    letter-spacing: 0;
+    font-weight: var(--font-body-regular);
+  }
+
+  .brutal-body-sm {
+    font-size: clamp(0.875rem, 0.875vw + 0.0625rem, 1rem);
+    line-height: 1.5;
+    letter-spacing: 0.005em;
+    font-weight: var(--font-body-regular);
+  }
+
+  /* Brutalist Card Styles */
+  .brutal-card {
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: 6px 6px 0 var(--border);
+    transition: all 0.2s cubic-bezier(0.17, 0.67, 0.1, 1);
+  }
+
+  .brutal-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 10px 10px 0 var(--border);
+  }
+
+  .brutal-card-compact {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    box-shadow: 4px 4px 0 var(--border);
+    transition: all 0.2s cubic-bezier(0.17, 0.67, 0.1, 1);
+  }
+
+  .brutal-card-compact:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0 var(--border);
+  }
+
+  /* Brutalist Button Styles */
+  .brutal-button-primary {
+    border: 3px solid var(--primary);
+    border-radius: var(--radius);
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-weight: var(--font-body-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 4px 4px 0 var(--border);
+    transition: all 0.15s cubic-bezier(0.17, 0.67, 0.1, 1);
+  }
+
+  .brutal-button-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--border);
+  }
+
+  .brutal-button-primary:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0 var(--border);
+  }
+
+  .brutal-button-secondary {
+    border: 3px solid var(--secondary);
+    border-radius: var(--radius);
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    font-weight: var(--font-body-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 4px 4px 0 var(--border);
+    transition: all 0.15s cubic-bezier(0.17, 0.67, 0.1, 1);
+  }
+
+  .brutal-button-secondary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 8px 8px 0 var(--border);
+  }
+
+  .brutal-button-secondary:active {
+    transform: translate(2px, 2px);
+    box-shadow: 0px 0px 0 var(--border);
+  }
+
+  .brutal-button-outline {
+    border: 3px solid var(--border);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--foreground);
+    font-weight: var(--font-body-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.15s cubic-bezier(0.17, 0.67, 0.1, 1);
+  }
+
+  .brutal-button-outline:hover {
+    background: var(--foreground);
+    color: var(--background);
+  }
+
+  /* Brutalist Badge Styles */
+  .brutal-badge {
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: var(--foreground);
+    font-weight: var(--font-body-bold);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.75rem;
+  }
+
+  .brutal-badge-primary {
+    border: 2px solid var(--primary);
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  /* Brutalist Blockquote */
+  .brutal-blockquote {
+    border-left: 4px solid var(--primary);
+    padding-left: 1.5rem;
+    font-style: italic;
+    position: relative;
+  }
+
+  .brutal-blockquote::before {
+    content: '"';
+    position: absolute;
+    left: -1rem;
+    top: -0.5rem;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--primary);
+    font-weight: var(--font-display-bold);
+  }
+
+  /* Brutalist Separator */
+  .brutal-separator {
+    height: 3px;
+    background: var(--border);
+    width: 100%;
+  }
+
+  /* Brutalist Grid Lines */
+  .brutal-grid-lines {
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    opacity: 0.1;
+  }
+
+  /* Custom Scrollbar */
+  .brutal-scrollbar::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .brutal-scrollbar::-webkit-scrollbar-track {
+    background: var(--background);
+    border-left: 3px solid var(--border);
+  }
+
+  .brutal-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border: 2px solid var(--border);
+  }
+
+  .brutal-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--foreground);
+  }
+
+  /* Brutalist Link Underline */
+  .brutal-link {
+    position: relative;
+    text-decoration: none;
+    color: var(--foreground);
+    font-weight: var(--font-body-bold);
+  }
+
+  .brutal-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s cubic-bezier(0.17, 0.67, 0.1, 1);
+  }
+
+  .brutal-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  /* Stagger Animation for Lists */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .stagger-item {
+    animation: slideInUp 0.4s cubic-bezier(0.17, 0.67, 0.1, 1) backwards;
+  }
+
+  .stagger-item:nth-child(1) { animation-delay: 0ms; }
+  .stagger-item:nth-child(2) { animation-delay: 50ms; }
+  .stagger-item:nth-child(3) { animation-delay: 100ms; }
+  .stagger-item:nth-child(4) { animation-delay: 150ms; }
+  .stagger-item:nth-child(5) { animation-delay: 200ms; }
+  .stagger-item:nth-child(6) { animation-delay: 250ms; }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Brutalist Text Utilities */
+  .brutal-text-outline {
+    -webkit-text-stroke: 2px var(--foreground);
+    color: transparent;
+  }
+
+  .brutal-text-outline-primary {
+    -webkit-text-stroke: 2px var(--primary);
+    color: transparent;
+  }
+
+  /* Brutalist Background Patterns */
+  .brutal-diagonal-lines {
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      var(--border) 10px,
+      var(--border) 11px
+    );
+    opacity: 0.05;
+  }
+
+  .brutal-dots {
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.15;
+  }
+
+  /* Brutalist Glow */
+  .brutal-glow {
+    box-shadow: 0 0 20px var(--primary), 0 0 40px var(--primary);
+  }
+
+  /* Brutalist Text Selection */
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+}
